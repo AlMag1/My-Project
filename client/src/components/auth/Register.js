@@ -34,6 +34,7 @@ class Register extends Component {
             .then(res => console.log(res.data))
             .catch(err => this.setState({ errors: err.response.data }));
         console.log('dkaod');
+        console.log('dkaod');
     };
 
     render() {
