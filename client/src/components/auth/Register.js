@@ -33,6 +33,7 @@ class Register extends Component {
             .post('/api/users/register', newUser)
             .then(res => console.log(res.data))
             .catch(err => this.setState({ errors: err.response.data }));
+        console.log('dkaod');
     };
 
     render() {
