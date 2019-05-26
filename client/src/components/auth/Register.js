@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import classnames from 'classnames';
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
 
 class Register extends Component {
     constructor() {
@@ -22,6 +24,9 @@ class Register extends Component {
 
     onSubmit = e => {
         e.preventDefault();
+        if (this.state.password !== this.state.password2) {
+            this.props.setAlert('Passwords do not match', 'danger');
+        }
         const newUser = {
             name: this.state.name,
             email: this.state.email,
@@ -140,4 +145,13 @@ class Register extends Component {
     }
 }
 
-export default Register;
+// const mapDispatchToStore = dispatch => {
+//     return {
+
+//     }
+// }
+
+export default connect(
+    null,
+    { setAlert }
+)(Register);
