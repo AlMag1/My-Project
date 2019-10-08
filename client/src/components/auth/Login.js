@@ -11,6 +11,10 @@ class Login extends Component {
         };
     }
 
+    // componentDidMount() {
+    //     console.log(this.props);
+    // }
+
     onChange = e => {
         this.setState({
             [e.target.name]: e.target.value,
@@ -27,7 +31,10 @@ class Login extends Component {
 
         axios
             .post('/api/users/login', user)
-            .then(res => console.log(res.data))
+            .then(res => {
+                localStorage.setItem('token', res.data.token);
+                this.props.history.push('/');
+            })
             .catch(err => this.setState({ errors: err.response.data }));
     };
 

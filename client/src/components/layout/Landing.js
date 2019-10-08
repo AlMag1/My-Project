@@ -7,9 +7,13 @@ class Landing extends Component {
         loggedIn: false,
     };
 
-    // componentDidMount() {
-    //   if(lo)
-    // }
+    componentDidMount() {
+        //  this.setState({loggedIn: localStorage.getItem("token")})
+        console.log(this.props);
+        const token = localStorage.getItem('token');
+        // console.log(token);
+        if (token) this.setState({ loggedIn: true });
+    }
 
     render() {
         if (!this.state.loggedIn) {
@@ -20,11 +24,6 @@ class Landing extends Component {
                             <div className="row">
                                 <div className="col-md-12 text-center">
                                     <h1 className="display-3 mb-4">Welcome</h1>
-                                    {/* <p className="lead">
-                {" "}
-                Create a developer profile/portfolio, share posts and get help
-                from other developers
-              </p> */}
                                     <hr />
                                     <Link
                                         to="/register"
