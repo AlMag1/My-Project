@@ -9,7 +9,7 @@ class Landing extends Component {
 
     componentDidMount() {
         //  this.setState({loggedIn: localStorage.getItem("token")})
-        console.log(this.props);
+        // console.log(this.props);
         const token = localStorage.getItem('token');
         // console.log(token);
         if (token) this.setState({ loggedIn: true });
