@@ -20,6 +20,7 @@ class Navbar extends Component {
         localStorage.removeItem('token');
         this.setState({ loggedIn: false });
         this.props.history.push('/login');
+        window.location.reload();
     };
 
     render() {
@@ -54,6 +55,7 @@ class Navbar extends Component {
                                     <li className="nav-item">
                                         <div
                                             className="nav-link"
+                                            style={{ cursor: 'pointer' }}
                                             onClick={this.logout}>
                                             Logout
                                         </div>

@@ -6,6 +6,7 @@ import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import Welcome from './components/Welcome';
 import { Provider } from 'react-redux';
 import store from './store';
 
@@ -17,16 +18,11 @@ class App extends Component {
     };
 
     componentDidMount() {
-        console.log('app.js');
         if (token) {
             this.setState({ loggedIn: true });
         } else {
             this.setState({ loggedIn: false });
         }
-    }
-
-    componentDidUpdate(prevProps) {
-        console.log(prevProps);
     }
 
     render() {
@@ -35,7 +31,11 @@ class App extends Component {
                 <Router>
                     <div className="App">
                         <Navbar loggedIn={this.state.loggedIn} />
-                        <Route exact path="/" component={Landing} />
+                        <Route
+                            exact
+                            path="/"
+                            component={this.state.loggedIn ? Welcome : Landing}
+                        />
                         <div className="container">
                             <Route
                                 exact

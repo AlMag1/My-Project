@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
     constructor() {
@@ -34,8 +35,9 @@ class Login extends Component {
             .then(res => {
                 localStorage.setItem('token', res.data.token);
                 this.props.history.push('/');
+                window.location.reload();
             })
-            .catch(err => this.setState({ errors: err.response.data }));
+            .catch(err => this.setState({ errors: err }));
     };
 
     render() {
