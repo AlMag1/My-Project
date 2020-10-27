@@ -13,43 +13,35 @@ import store from './store';
 const token = localStorage.getItem('token');
 
 class App extends Component {
-    state = {
-        loggedIn: false,
-    };
+  state = {
+    loggedIn: false
+  };
 
-    componentDidMount() {
-        if (token) {
-            this.setState({ loggedIn: true });
-        } else {
-            this.setState({ loggedIn: false });
-        }
+  componentDidMount() {
+    if (token) {
+      this.setState({ loggedIn: true });
+    } else {
+      this.setState({ loggedIn: false });
     }
+  }
 
-    render() {
-        return (
-            <Provider store={store}>
-                <Router>
-                    <div className="App">
-                        <Navbar loggedIn={this.state.loggedIn} />
-                        <Route
-                            exact
-                            path="/"
-                            component={this.state.loggedIn ? Welcome : Landing}
-                        />
-                        <div className="container">
-                            <Route
-                                exact
-                                path="/register"
-                                component={Register}
-                            />
-                            <Route exact path="/login" component={Login} />
-                        </div>
-                        <Footer />
-                    </div>
-                </Router>
-            </Provider>
-        );
-    }
+  render() {
+    return (
+      <Provider store={store}>
+        <Router>
+          <div className="App">
+            <Navbar loggedIn={this.state.loggedIn} />
+            <Route exact path="/" component={this.state.loggedIn ? Welcome : Landing} />
+            <div className="container">
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+            </div>
+            <Footer />
+          </div>
+        </Router>
+      </Provider>
+    );
+  }
 }
 
 export default App;
