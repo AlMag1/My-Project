@@ -1,113 +1,104 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { register } from '../../store/auth/actions';
 import classnames from 'classnames';
+import { useHistory } from 'react-router-dom';
 
-class Register extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: '',
-      email: '',
-      password: '',
-      password2: '',
-      errors: {}
-    };
-  }
+const Register = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [errors, setErrors] = useState({});
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  onChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-
-  onSubmit = e => {
+  const onSubmit = e => {
     e.preventDefault();
-    if (this.state.password !== this.state.password2) {
-      // this.props.setAlert('Passwords do not match', 'danger');
-    }
-    const newUser = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2
+
+    const params = {
+      name,
+      email,
+      password,
+      confirmPassword
     };
 
-    axios
-      .post('/api/users/register', newUser)
-      .then(res => console.log(res.data))
-      .catch(err => this.setState({ errors: err.response.data }));
+    dispatch(register(params))
+      .then(response => {
+        if (response.token) history.push('/');
+      })
+      .catch(error => {
+        console.log(error, 'error');
+      });
   };
 
-  render() {
-    const { errors } = this.state;
-    return (
-      <div className="register">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Sign Up</h1>
-              <p className="lead text-center">Create your account</p>
-              <form noValidate onSubmit={this.onSubmit}>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.name
-                    })}
-                    placeholder="Name"
-                    name="name"
-                    value={this.state.name}
-                    onChange={this.onChange}
-                  />
-                  {errors.name && <div className="invalid-feedback">{errors.name}</div>}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.email
-                    })}
-                    placeholder="Email Address"
-                    value={this.state.email}
-                    name="email"
-                    onChange={this.onChange}
-                  />
-                  {errors.email && <div className="invalid-feedback">{errors.email}</div>}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.password
-                    })}
-                    placeholder="Password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.onChange}
-                  />
-                  {errors.password && <div className="invalid-feedback">{errors.password}</div>}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.password2
-                    })}
-                    placeholder="Confirm Password"
-                    name="password2"
-                    value={this.state.password2}
-                    onChange={this.onChange}
-                  />
-                  {errors.password2 && <div className="invalid-feedback">{errors.password2}</div>}
-                </div>
-                <input type="submit" className="btn btn-info btn-block mt-4" />
-              </form>
-            </div>
+  return (
+    <div className="register">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-8 m-auto">
+            <h1 className="display-4 text-center">Sign Up</h1>
+            <p className="lead text-center">Create your account</p>
+            <form noValidate onSubmit={onSubmit}>
+              <div className="form-group">
+                <input
+                  type="text"
+                  className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.name
+                  })}
+                  placeholder="Name"
+                  name="name"
+                  value={name}
+                  onChange={event => setName(event.target.value)}
+                />
+                {errors.name && <div className="invalid-feedback">{errors.name}</div>}
+              </div>
+              <div className="form-group">
+                <input
+                  type="email"
+                  className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.email
+                  })}
+                  placeholder="Email Address"
+                  value={email}
+                  name="email"
+                  onChange={event => setEmail(event.target.value)}
+                />
+                {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+              </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.password
+                  })}
+                  placeholder="Password"
+                  name="password"
+                  value={password}
+                  onChange={event => setPassword(event.target.value)}
+                />
+                {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+              </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  className={classnames('form-control form-control-lg', {
+                    'is-invalid': errors.password2
+                  })}
+                  placeholder="Confirm Password"
+                  name="password2"
+                  value={confirmPassword}
+                  onChange={event => setConfirmPassword(event.target.value)}
+                />
+                {errors.password2 && <div className="invalid-feedback">{errors.password2}</div>}
+              </div>
+              <input type="submit" className="btn btn-info btn-block mt-4" />
+            </form>
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Register;

@@ -9,6 +9,7 @@ const INITIAL_STATE = {
 const reducer = (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
     case TYPES.USER_LOGIN.SUCCESS:
+    case TYPES.USER_REGISTER.SUCCESS:
       localStorage.setItem('token', payload.token);
       return {
         ...state,

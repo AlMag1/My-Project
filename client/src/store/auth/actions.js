@@ -5,6 +5,21 @@ export const loadUser = () => dispatch => {
   dispatch({ type: TYPES.LOAD_USER });
 };
 
+export const register = params => dispatch => {
+  dispatch({ type: TYPES.USER_REGISTER.START });
+
+  return axios
+    .post('/api/users/register', params)
+    .then(response => {
+      dispatch({ type: TYPES.USER_REGISTER.SUCCESS, payload: response.data });
+      return response.data;
+    })
+    .catch(error => {
+      dispatch({ type: TYPES.USER_REGISTER.ERROR, payload: error });
+      throw error;
+    });
+};
+
 export const login = params => dispatch => {
   dispatch({ type: TYPES.USER_LOGIN.START });
 
