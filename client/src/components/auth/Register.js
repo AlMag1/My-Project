@@ -10,6 +10,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState({});
+
   const dispatch = useDispatch();
   const history = useHistory();
 
