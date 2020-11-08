@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class Landing extends Component {
   render() {
-    return <div className="section-landing">LANDING PAGE</div>;
+    return (
+      <div className="section-landing">
+        LANDING PAGE
+        <Link to="/user">GO TO USER</Link>
+      </div>
+    );
   }
 }
 
