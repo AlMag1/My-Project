@@ -60,7 +60,8 @@ router.post('/register', (req, res) => {
               res.json({
                 name: req.body.name,
                 email: req.body.email,
-                token: 'Bearer ' + token
+                token: 'Bearer ' + token,
+                expires: 3600
               })
             )
             .catch(err => console.log(err));
@@ -100,7 +101,7 @@ router.post('/login', (req, res) => {
         }; // Create JWT Payload
         // Sign Token
         jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
-          res.json({ ...payload, token: 'Bearer ' + token });
+          res.json({ ...payload, token: 'Bearer ' + token, expires: 3600 });
         });
       } else {
         errors.password = 'Incorrect password';
