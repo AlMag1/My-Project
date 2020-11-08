@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { post } from 'utils/api';
 import TYPES from './types';
 
 export const loadUser = () => dispatch => {
@@ -8,8 +8,7 @@ export const loadUser = () => dispatch => {
 export const register = params => dispatch => {
   dispatch({ type: TYPES.USER_REGISTER.START });
 
-  return axios
-    .post('/api/users/register', params)
+  return post('/api/users/register', params)
     .then(response => {
       dispatch({ type: TYPES.USER_REGISTER.SUCCESS, payload: response.data });
       return response.data;
@@ -23,8 +22,7 @@ export const register = params => dispatch => {
 export const login = params => dispatch => {
   dispatch({ type: TYPES.USER_LOGIN.START });
 
-  return axios
-    .post('/api/users/login', params)
+  return post('api/users/login', params)
     .then(response => {
       dispatch({ type: TYPES.USER_LOGIN.SUCCESS, payload: response.data });
       return response.data;
