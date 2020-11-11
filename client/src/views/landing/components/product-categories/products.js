@@ -1,6 +1,6 @@
 export const products = [
-  { name: 'Φρούτα' },
-  { name: 'Λαχανικά' },
-  { name: 'Ξηροί καρποί' },
-  { name: 'Ζυμαρικά' }
+  { name: 'Φρούτα', category: 'fruits' },
+  { name: 'Λαχανικά', category: 'vegetables' },
+  { name: 'Ξηροί καρποί', category: 'nuts' },
+  { name: 'Ζυμαρικά', category: 'pasta' }
 ];

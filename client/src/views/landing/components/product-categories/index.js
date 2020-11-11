@@ -12,10 +12,10 @@ const ProductCategories = () => {
             Κατηγορίες προϊόντων
           </Col>
         </Row>
-        <Row className="no-gutters p-4">
+        <Row className="no-gutters p-4 product-categories__body">
           {products.map((product, index) => (
             <Col xs={4} key={index}>
-              {product.name}
+              <div className={`product category-${product.category}`}>{product.name}</div>
             </Col>
           ))}
         </Row>

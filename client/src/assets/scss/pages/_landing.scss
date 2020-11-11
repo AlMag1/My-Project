@@ -5,4 +5,47 @@
     font-weight: 700;
     color: $blue-2;
   }
+
+  &__body {
+    & > div {
+      padding: 8px !important;
+    }
+    .product {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      height: 180px;
+      position: relative;
+      z-index: 0;
+      color: #fff;
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 30px;
+        background-color: $blue-3;
+        z-index: -1;
+      }
+
+      &.category-fruits {
+        background-image: url('~assets/img/fruits.jpg');
+      }
+
+      &.category-vegetables {
+        background-image: url('~assets/img/vegetables.jpg');
+      }
+
+      &.category-nuts {
+        background-image: url('~assets/img/nuts.jpg');
+      }
+
+      &.category-pasta {
+        background-image: url('~assets/img/pasta.jpg');
+      }
+    }
+  }
 }
