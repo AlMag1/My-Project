@@ -17,7 +17,7 @@ const AppRouter = () => {
 
   useEffect(() => {
     dispatch(loadUser());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Router>
