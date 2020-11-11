@@ -1,0 +1,27 @@
+.login-modal {
+  &__header {
+    border-bottom: none;
+
+    .modal-title {
+      color: $blue-2;
+      cursor: default;
+    }
+  }
+
+  &__footer {
+    .login-proceed {
+      background-color: $blue-2;
+
+      &:hover {
+        background-color: darken($color: $blue-2, $amount: 7);
+        transition: all 0.3s ease-in-out;
+      }
+    }
+
+    .login-cancel {
+      &:hover {
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+}

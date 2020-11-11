@@ -7,8 +7,8 @@ import { landing } from './routes/landing';
 import { user } from './routes/user';
 
 import paths from './routes/_paths';
-import PrivateRoute from 'routing/components';
-import PublicRoute from 'routing/components';
+import { PrivateRoute } from 'routing/components';
+import { PublicRoute } from 'routing/components';
 
 const routes = [...landing, ...user];
 

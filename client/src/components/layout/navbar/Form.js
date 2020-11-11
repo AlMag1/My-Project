@@ -20,7 +20,7 @@ const LoginForm = ({ email, password, setEmail, setPassword }) => {
           type="password"
           name="password"
           id="password"
-          placeholder="Password"
+          placeholder="Κωδικός"
           value={password}
           onChange={event => setPassword(event.target.value)}
           autoComplete="on"

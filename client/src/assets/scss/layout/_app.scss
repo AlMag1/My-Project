@@ -10,6 +10,25 @@
     justify-content: space-between;
   }
 
+  &__header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    padding: 1.5rem;
+
+    .header-right-section {
+      > div {
+        cursor: pointer;
+        color: $blue-1;
+
+        &:hover {
+          color: $blue-2;
+          transition: all 0.3s ease-in-out;
+        }
+      }
+    }
+  }
+
   &__body {
     height: 100%;
   }

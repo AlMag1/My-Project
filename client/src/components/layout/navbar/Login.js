@@ -29,19 +29,19 @@ const Login = ({ toggle, open }) => {
     });
   };
   return (
-    <Modal isOpen={open} toggle={toggle}>
-      <ModalHeader toggle={toggle} className="align-items-center">
-        Login
+    <Modal isOpen={open} toggle={toggle} className="login-modal">
+      <ModalHeader toggle={toggle} className="align-items-center login-modal__header">
+        Είσοδος
       </ModalHeader>
-      <ModalBody>
+      <ModalBody className="login-modal__body">
         <Form email={email} password={password} setEmail={setEmail} setPassword={setPassword} />
       </ModalBody>
-      <ModalFooter>
-        <Button color="primary" onClick={loginUser}>
-          Login
+      <ModalFooter className="login-modal__footer">
+        <Button color="primary" onClick={loginUser} className="login-proceed">
+          Είσοδος
         </Button>
-        <Button color="secondary" onClick={toggle}>
-          Cancel
+        <Button color="secondary" onClick={toggle} className="login-cancel">
+          Ακύρωση
         </Button>
       </ModalFooter>
     </Modal>
